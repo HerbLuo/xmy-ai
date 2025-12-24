@@ -54,7 +54,7 @@
   extraCsp 用于指定除了当前 url 以外，还有哪些 url 须要移除 CSP，一般无需填写
 - cookies 小绵羊 AI 助手本身不支持登陆，但它使用已登陆网站的 cookie，大多数时候，网站会使用 Cookie 的 Lax 选项来限制 iframe 获取其 cookies，该选项代表登陆 AI 网站所需要的 Token
 - storage 该选项代表登陆 AI 网站所须要的 Token
-- sendMsg 如何发送消息，该配置会在目标 AI 网站的界面内执行 具体内置的方法见 [aios.ts](./xmy-ai-web/src/state/aios.ts)
+- sendMsg 如何发送消息，该配置会在目标 AI 网站的界面内执行 具体内置的方法见 [aios.ts](./xmy-ai-web/src/state/aios.ts)中的 aioHelpers
 
 ## TODO List
 
