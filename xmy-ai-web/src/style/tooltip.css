@@ -1,0 +1,142 @@
+[tooltip] {
+  position: relative;
+}
+
+[tooltip] > * {
+  display: inline-block;
+}
+
+[tooltip]:before,
+[tooltip]:after {
+  text-transform: none;
+  font-size: 0.9em;
+  line-height: 1.1;
+  user-select: none;
+  pointer-events: none;
+  position: absolute;
+  display: none;
+  opacity: 0;
+}
+[tooltip]:before {
+  content: '';
+  border: 5px solid transparent;
+  z-index: 1001;
+}
+[tooltip]:after {
+  content: attr(tooltip);
+  font-family: Helvetica, sans-serif;
+  text-align: center;
+  width: max-content;
+  max-width: 21em;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  box-shadow: 0 1em 2em -0.5em rgba(0, 0, 0, 0.35);
+  background: #333;
+  color: #fff;
+  z-index: 1000;
+}
+[tooltip]:hover:before,
+[tooltip]:hover:after {
+  display: block;
+}
+/* position: TOP */
+[tooltip]:not([position]):before,
+[tooltip][position^='top']:before {
+  bottom: 100%;
+  border-bottom-width: 0;
+  border-top-color: #333;
+}
+[tooltip]:not([position]):after,
+[tooltip][position^='top']::after {
+  bottom: calc(100% + 5px);
+}
+
+[tooltip]:not([position])::before,
+[tooltip]:not([position])::after,
+[tooltip][position^='top']::before,
+[tooltip][position^='top']::after {
+  left: 50%;
+  transform: translate(-50%, -0.5em);
+}
+
+/* position: BOTTOM */
+[tooltip][position^='bottom']::before {
+  top: 105%;
+  border-top-width: 0;
+  border-bottom-color: #333;
+}
+[tooltip][position^='bottom']::after {
+  top: calc(105% + 5px);
+}
+[tooltip][position^='bottom']::before,
+[tooltip][position^='bottom']::after {
+  left: 50%;
+  transform: translate(-50%, 0.5em);
+}
+
+/* position: LEFT */
+[tooltip][position^='left']::before {
+  top: 50%;
+  border-right-width: 0;
+  border-left-color: #333;
+  left: calc(0em - 5px);
+  transform: translate(-0.5em, -50%);
+}
+[tooltip][position^='left']::after {
+  top: 50%;
+  right: calc(100% + 5px);
+  transform: translate(-0.5em, -50%);
+}
+
+/* position: RIGHT */
+[tooltip][position^='right']::before {
+  top: 50%;
+  border-left-width: 0;
+  border-right-color: #333;
+  right: calc(0em - 5px);
+  transform: translate(0.5em, -50%);
+}
+[tooltip][position^='right']::after {
+  top: 50%;
+  left: calc(100% + 5px);
+  transform: translate(0.5em, -50%);
+}
+
+[tooltip]:not([position]):hover::before,
+[tooltip]:not([position]):hover::after,
+[tooltip][position^='top']:hover::before,
+[tooltip][position^='top']:hover::after,
+[tooltip][position^='bottom']:hover::before,
+[tooltip][position^='bottom']:hover::after {
+  animation: tooltips-vert 300ms ease-out forwards;
+}
+
+[tooltip][position^='left']:hover::before,
+[tooltip][position^='left']:hover::after,
+[tooltip][position^='right']:hover::before,
+[tooltip][position^='right']:hover::after,
+.show[tooltip][position^='left']::before,
+.show[tooltip][position^='left']::after,
+.show[tooltip][position^='right']::before,
+.show[tooltip][position^='right']::after {
+  animation: tooltips-horz 300ms ease-out forwards;
+}
+
+[tooltip='']::before,
+[tooltip='']::after {
+  display: none !important;
+}
+
+@keyframes tooltips-vert {
+  to {
+    opacity: 0.9;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes tooltips-horz {
+  to {
+    opacity: 0.9;
+    transform: translate(0, -50%);
+  }
+}
