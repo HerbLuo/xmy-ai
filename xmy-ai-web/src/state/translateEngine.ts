@@ -4,7 +4,7 @@ import { unwrap, type CheckResult } from './types'
 import { aios, delay } from './aios'
 import { tipError } from '@/utils/error'
 import { allowTransIframeCsp, type AllowIframeConfig } from '@/action/message'
-import { i18n } from './i18n'
+import { i18n, isCn } from './i18n'
 
 const TranslateEngineStorageKey = 'lambs_translate'
 
@@ -17,7 +17,7 @@ export const BaiduTransUrl = 'https://fanyi.baidu.com/'
 const storage = loadState<TranslateSetting>(TranslateEngineStorageKey)
 export const translate_setting: TranslateSetting = reactive(
   unwrap(typeCheck(storage)) || {
-    engine: BaiduTrans,
+    engine: isCn.value ? BaiduTrans : "deepseek",
     url: BaiduTransUrl,
   },
 )

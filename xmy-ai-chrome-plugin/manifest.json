@@ -1,6 +1,6 @@
 {
   "name": "Xmy Ai Helper",
-  "description" : "A helper for xmy-ai.cn",
+  "description" : "A helper for lambs-ai.com, the Lambs AI Assistant",
   "version": "1.0",
   "manifest_version": 3,
   "action": {

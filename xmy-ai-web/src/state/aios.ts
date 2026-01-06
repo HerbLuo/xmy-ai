@@ -2,7 +2,7 @@ import { loadState, saveState } from '@/utils/storage-persistor'
 import { unwrap, type CheckResult } from './types'
 import { confirmError } from '@/utils/error'
 import { reactive } from 'vue'
-import { i18n } from './i18n'
+import { i18n, ini_ui_language } from './i18n'
 
 const StorageKey = 'lambs_ini_aios'
 
@@ -120,14 +120,15 @@ export function checkLogin(
     times++
     if (test()) {
       const div = document.createElement('div')
+      const i18n = window._xmy_i18n_aios
       div.innerHTML = `
-<h1 style="line-height: 2em;">
-  ${aMode ? '如需登陆' : '当前无Token或Token已过期，'}
+<h2 style="line-height: 2em;">
+  ${aMode ? i18n.check_login_no_login : i18n.check_login_require}
   <ul>
-    <li>请打开新标签页</li>
-    <li>登陆${sitename}（已登陆忽略该行）</li>
-    <li>再刷新一次${sitename}所在标签页</li>
-    <li>之后回到该小绵羊的界面，刷新小绵羊的界面</li>
+    <li>${i18n.check_login_step1}</li>
+    <li>${i18n.t(i18n.check_login_step2, {sitename})}</li>
+    <li>${i18n.t(i18n.check_login_step3, {sitename})}</li>
+    <li>${i18n.check_login_step4}</li>
   </ul>
 </h1>`
       div.style = `
@@ -173,9 +174,16 @@ const aiosPlain: Record<string, Aio> = {
     pcUA: true,
     tags: ['Free'],
     fromChina: true,
+    cookies: ['*'],
     storage: ['userToken'],
     onLoad: function () {
-      checkLogin(() => !!document.querySelector('.ds-sign-up-form__main'), 'DeepSeek', '')
+      checkLogin(
+        () =>
+          !!document.querySelector('.ds-sign-up-form__main') ||
+          !!document.querySelector('.ds-auth-form-wrapper'),
+        'DeepSeek',
+        '',
+      )
     },
     sendMsg: (msg) => sendMsg('textarea', msg),
     trans: async function (src) {
@@ -278,9 +286,7 @@ const aiosPlain: Record<string, Aio> = {
     onLoad: function () {
       const KEY = 'XMY_TIPPED'
       if (!localStorage.getItem(KEY)) {
-        alert(
-          "For Grok, Login required, If you wish to access anonymously, you need to open Grok's website in a new tab, wait for it to load completely (which means Grok automatically generates an anonymous key for you, which is valid for a short period of time (only a few hours)), and then return to the interface of Little Sheep and refresh it",
-        )
+        alert(window._xmy_i18n_aios.grok_on_load)
         localStorage.setItem(KEY, 'true')
       }
     },
@@ -307,8 +313,6 @@ const aiosPlain: Record<string, Aio> = {
 /* aio helpers end */
 const storage = loadState<Record<string, Aio>>(StorageKey)
 export const aios: Record<string, Aio> = reactive(unwrap(typeCheck(storage)) || aiosPlain)
-
-
 
 /* actions */
 export async function useAio<R>(page: string, callback: (aio: Aio | null) => R): Promise<R> {
@@ -420,9 +424,30 @@ export function replaceAios(data: Record<string, Aio>) {
   saveState(StorageKey, aios)
 }
 
+function appendI18nVarsToIframe(fm: HTMLIFrameElement) {
+  const code = `
+window._xmy_i18n_aios = (window._xmy_i18n_aios || {});
+_xmy_i18n_aios.t = (msg = '', obj) => {for (const [k, v] of Object.entries(obj)) { msg = msg.replaceAll('{' + k + '}', v) } return msg;}
+_xmy_i18n_aios.locale = '${ini_ui_language.value}'
+_xmy_i18n_aios.check_login_require = '${i18n.global.t('check-login.require').replace("'", "\\'")}'
+_xmy_i18n_aios.check_login_no_login = '${i18n.global.t('check-login.no_login').replace("'", "\\'")}'
+_xmy_i18n_aios.check_login_step1 = '${i18n.global.t('check-login.step1').replace("'", "\\'")}'
+_xmy_i18n_aios.check_login_step2 = '${i18n.global.t('check-login.step2').replace("'", "\\'")}'
+_xmy_i18n_aios.check_login_step3 = '${i18n.global.t('check-login.step3').replace("'", "\\'")}'
+_xmy_i18n_aios.check_login_step4 = '${i18n.global.t('check-login.step4').replace("'", "\\'")}'
+_xmy_i18n_aios.grok_on_load = '${i18n.global.t('grok-on-load').replace("'", "\\'")}'
+`
+  fm?.contentWindow?.postMessage(JSON.stringify({ type: 'exec', code }), fm.src)
+}
+
 export function onLoadScript(aioKey: string, url: string, script: () => unknown) {
   const fm = document.querySelector<HTMLIFrameElement>(`#${aioKey} iframe`)
-
-  const code = `${onLoadHelpers};(\n${script.toString()})()`
-  fm?.contentWindow?.postMessage(JSON.stringify({ type: 'exec', code }), url)
+  if (!fm) {
+    return
+  }
+  appendI18nVarsToIframe(fm)
+  setTimeout(() => {
+    const code = `${onLoadHelpers};(\n${script.toString()})()`
+    fm.contentWindow?.postMessage(JSON.stringify({ type: 'exec', code }), url)
+  })
 }

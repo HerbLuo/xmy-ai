@@ -51,8 +51,8 @@
     "system": "System",
     "dark": "Dark",
     "light": "Light",
-    "large-screen": "Large",
-    "small-screen": "Small",
+    "large-screen": "L Screen",
+    "small-screen": "S Screen",
     "top": "Top",
     "left": "Left",
     "big": "Big",
@@ -142,16 +142,15 @@
     "multi-ai": "Multi-AI group chat",
     "medical": "Medical"
   },
-  "ais": {
-    "YiYan": "YiYan",
-    "SenseChat": "SenseChat",
-    "ZhiNao": "ZhiNao",
-    "NaMi": "NaMi",
-    "BaiChuan": "BaiChuan",
-    "HaiLuo": "HaiLuo",
-    "TianGong": "TianGong",
-    "JieYue": "JieYue"
+  "check-login": {
+    "require": "Currently, there is no Token or the Token has expired.",
+    "no_login": "If login is required",
+    "step1": "Please open a new tab",
+    "step2": "Log in to {sitename} (if already logged in, ignore this line)",
+    "step3": "Refresh the tab where {sitename} is located again",
+    "step4": "Afterwards, return to the interface of the lambs and refresh it"
   },
+  "grok-on-load": "For Grok, Login required, If you wish to access anonymously, you need to open Grok's website in a new tab, wait for it to load completely (which means Grok automatically generates an anonymous key for you, which is valid for a short period of time (only a few hours)), and then return to the interface of Little Sheep and refresh it",
   "settingText": "Setting",
   "ok": "Ok",
   "cancel": "Cancel",

@@ -17,5 +17,9 @@ declare module 'vue' {
 declare global {
   interface Window {
     mobileMode?: boolean
+    _xmy_i18n_aios: Record<string, string> & {
+      locale: string
+      t(msg: string | undefined, obj: unknown): string
+    }
   }
 }

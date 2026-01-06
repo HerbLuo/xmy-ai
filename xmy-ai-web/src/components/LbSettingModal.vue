@@ -79,7 +79,7 @@ watch(
     }
     const couldTransAios = Object.values(aios).filter((it) => it.trans)
     transOptions.value = [
-      ...(isCn
+      ...(isCn.value
         ? [
             {
               label: '百度翻译',

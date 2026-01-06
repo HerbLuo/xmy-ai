@@ -321,7 +321,7 @@ header.left header-right {
   height: unset;
 }
 split-view {
-  width: 296px;
+  width: 328px;
   display: flex;
   justify-content: flex-end;
   align-items: center;

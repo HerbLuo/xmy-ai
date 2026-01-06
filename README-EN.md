@@ -11,7 +11,7 @@ Before using the Lambs AI assistant, you need to install a Google Chrome or Edge
 
 - After downloading, extract the plugin to a specific folder
 - Open the Chrome extension management interface (Settings - Extensions - Manage Extensions)
-- Enable developer mode, as shown below![Schematic diagram of enabling developer mode](./xmy-ai-web/src/imgs/tour_1.jpg)
+- Enable developer mode, as shown below![Schematic diagram of enabling developer mode](./xmy-ai-web/src/imgs/tour_1_en.jpg)
 - Click to load the unpacked extension, and select the unzipped folder, as shown in the above figure
 - Open or refresh the Lambs AI assistant[https://lambs-ai.com]
 

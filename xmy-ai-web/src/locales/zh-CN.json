@@ -142,6 +142,15 @@
     "multi-ai": "多AI群聊",
     "medical": "医疗"
   },
+  "check-login": {
+    "require": "当前无Token或Token已过期，",
+    "no_login": "如需登陆",
+    "step1": "请打开新标签页",
+    "step2": "登陆{sitename}（已登陆忽略该行）",
+    "step3": "再刷新一次{sitename}所在标签页",
+    "step4": "之后回到该小绵羊的界面，刷新小绵羊的界面"
+  },
+  "grok-on-load": "对于Grok，我们建议登陆访问，如果你希望匿名访问，需要在新标签页打开Grok的网站，等待加载完毕（意味着Grok自动为你生成一个匿名密钥，该密钥有效期较短（仅几个小时））之后回到小绵羊的界面刷新即可",
   "settingText": "设置",
   "ok": "好",
   "cancel": "取消",

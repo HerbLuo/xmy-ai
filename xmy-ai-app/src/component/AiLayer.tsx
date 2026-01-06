@@ -17,7 +17,7 @@ export function AiLayer() {
 
   const lsm = !smallScreenMode;
 
-  let aiWidth = width  * 0.9;
+  let aiWidth = width  * 0.86;
   if (width > 1800) {
     aiWidth = width * (lsm ? 0.2 : 0.25)
   } else if (width > 1500) {
@@ -29,7 +29,7 @@ export function AiLayer() {
   } else if (width > 680) {
     aiWidth = width * (lsm ? 0.45 : 0.6)
   } else if (width > 380) {
-    aiWidth = width * 0.8
+    aiWidth = width * (lsm ? 0.6 : 0.8)
   }
   const aiHeight = height - statusBarHeight - headerHeight - 20;
 
@@ -60,7 +60,11 @@ export function AiLayer() {
   return (
     <View style={[styles.aiLayer]}>
       <View style={{ height: statusBarHeight + headerHeight }}/>
-      <ScrollView style={styles.aiViewPoint} horizontal={true} showsHorizontalScrollIndicator={true}>
+      <ScrollView 
+        style={styles.aiViewPoint} 
+        horizontal={true} 
+        showsHorizontalScrollIndicator={true}
+      >
         {(pages.length ? [...pages, "new"] : []).map((page, index) => {
           const aio = aios[page]
           if (!aio && page !== "new") {
@@ -85,6 +89,7 @@ export function AiLayer() {
                     <Text style={styles.currentAiText}>{aio.name}</Text>
                   </Pressable >
                   <WebView 
+                    nestedScrollEnabled
                     ref={el => {aiRefs.current[index] = {el, aio}}}
                     style={{width: aiWidth, height: aiHeight}}
                     source={{uri: aio.url}}
@@ -104,7 +109,7 @@ const styles = StyleSheet.create({
   aiLayer: {
     position: "absolute",
     width: "100%",
-    height: "100%"
+    height: "100%",
   },
   aiViewPoint: {
     flexDirection: "row",
@@ -119,9 +124,8 @@ const styles = StyleSheet.create({
   },
   aiView: {
     position: "relative",
-    marginTop: 10,
-    marginBottom: 20,
-    marginLeft: 10,
+    marginTop: 12,
+    marginLeft: 12,
     borderRadius: 2,
     borderWidth: 1,
     borderColor: '#aaa',

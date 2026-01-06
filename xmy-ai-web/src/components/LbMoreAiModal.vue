@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import CpModal from './CpModal.vue'
 import { aios, removeAio, replaceAio, useAio, type Aio } from '@/state/aios'
 import { confirmError, tipError } from '@/utils/error'
@@ -7,7 +7,7 @@ import { info } from '@/utils/message'
 import { ini_split_view, setSplitViewAi } from '@/state/splitView'
 import { largeScreen, mobileMode } from '@/state/env'
 import { useI18n } from 'vue-i18n'
-import { isCn } from '@/state/i18n'
+import { ini_ui_language, isCn } from '@/state/i18n'
 
 const show = defineModel<boolean>()
 const props = defineProps<{
@@ -162,6 +162,10 @@ function onCancel() {
   emit('cancel')
   show.value = false
 }
+
+const smallFontSize = computed(() => {
+  return ['ja-JP'].includes(ini_ui_language.value)
+})
 </script>
 
 <template>
@@ -172,7 +176,7 @@ function onCancel() {
     :onCancel="onCancel"
     @close="onCancel"
   >
-    <ai-table id="more-ai-table">
+    <ai-table id="more-ai-table" :class="{ 'small-font-size': smallFontSize }">
       <table-container class="macos-scrollbar">
         <table border="1">
           <thead>
@@ -269,6 +273,10 @@ ai-table {
   height: 80vh;
   max-height: 580px;
   padding: 22px;
+}
+
+.small-font-size {
+  font-size: 12px;
 }
 
 table-container {
@@ -436,6 +444,10 @@ ai-config-title {
   justify-content: space-between;
   align-items: center;
 }
+
+/* ai-config-title-left {
+  max-width: 366px;
+} */
 
 ai-config-title > * {
   margin-left: 2px;
