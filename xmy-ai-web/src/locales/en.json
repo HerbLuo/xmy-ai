@@ -96,7 +96,7 @@
     "title": "Split Screen Mode Instructions",
     "step1": "Select an AI to enable in the Split Screen on the top right of the Lambs AI assistant (e.g., Copilot), as shown below",
     "step2": "Right-click on the link where the AI name is located, and select \"Open Link in split screen window\", as shown below",
-    "step3": "Note that for Edge, we must ensure that the Small Sheep AI assistant is on the right side of the split-screen window, and you can click \"Switch left and right Tabs\" from the More button in the top right corner of the window",
+    "step3": "Note that for Edge, we must ensure that the Lambs AI assistant is on the right side of the split-screen window, and you can click \"Switch left and right Tabs\" from the More button in the top right corner of the window",
     "step4": "Afterwards, we can utilize the native features of Chrome to adjust the width of the Split Screen as we please",
     "step5": "Asking a question in the Lambs AI Assistant will automatically send the question to the AI in the Split Screen"
   },
@@ -150,7 +150,7 @@
     "step3": "Refresh the tab where {sitename} is located again",
     "step4": "Afterwards, return to the interface of the lambs and refresh it"
   },
-  "grok-on-load": "For Grok, Login required, If you wish to access anonymously, you need to open Grok's website in a new tab, wait for it to load completely (which means Grok automatically generates an anonymous key for you, which is valid for a short period of time (only a few hours)), and then return to the interface of Little Sheep and refresh it",
+  "grok-on-load": "For Grok, Login required, If you wish to access anonymously, you need to open Grok's website in a new tab, wait for it to load completely (which means Grok automatically generates an anonymous key for you, which is valid for a short period of time (only a few hours)), and then return to the interface of Lambs AI and refresh it",
   "settingText": "Setting",
   "ok": "Ok",
   "cancel": "Cancel",
