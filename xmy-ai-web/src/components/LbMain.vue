@@ -16,6 +16,7 @@ import { confirmError } from '@/utils/error'
 import { log } from '@/state/log'
 import { useI18n } from 'vue-i18n'
 import { isCn } from '@/state/i18n'
+import { EVENT_Iframe_Evaler_Preapred, eventBus } from '@/utils/EventBus'
 
 const aiIndex = ref(-1)
 const aiKey = ref('')
@@ -38,6 +39,8 @@ onMounted(() => {
 async function onIframeLoad(page: Aio) {
   // Allow Eval
   await appendExecutorToIframe()
+
+  eventBus.emit(EVENT_Iframe_Evaler_Preapred, true)
 
   // Copy LocalStorage
   const urlAndTokenLocalStorageNames: HostnameAndTokenLocalStorageNames[] = []

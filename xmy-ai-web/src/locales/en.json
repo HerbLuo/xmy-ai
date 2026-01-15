@@ -74,7 +74,8 @@
     "desc": "The Lambs AI Assistant is a pure front-end web page that can simultaneously ask questions to multiple AI agents.",
     "notes": "Notes: ",
     "plugin-tip": "Due to browser limitations, the Lambs AI Assistant requires the installation of a Chrome or Edge plugin to function properly.",
-    "login-tip": "The interface of the Lambs AI Assistant does not allow for the login and logout actions of the AI agent. If you need to log in, please do so on the new tab. The assistant will automatically synchronize your account information (or follow the prompts within the assistant if necessary)."
+    "login-tip": "The interface of the Lambs AI Assistant does not allow for the login and logout actions of the AI agent. If you need to log in, please do so on the new tab. The assistant will automatically synchronize your account information (or follow the prompts within the assistant if necessary).",
+    "show-translator": "Show Translator"
   },
   "tour": {
     "install-instruct": "Installation Instructions: ",

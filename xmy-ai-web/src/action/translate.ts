@@ -106,7 +106,7 @@ ${findEl.toString().replace(/\s+/g, ' ')}
 ${setValue.toString().replace(/\s+/g, ' ')}
 ${emitEnter.toString().replace(/\s+/g, ' ')}
 ${sendMsg.toString().replace(/\s+/g, ' ')}
-if (!window.location.search.includes('trans=true')) {
+if (!window.location.search.includes('trans=true') && !window._xmy_trans) {
   return
 }
 const res = await (${func})(...${JSON.stringify(args)});

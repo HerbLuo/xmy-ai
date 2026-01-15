@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ini_ui, switchLayout, switchTheme } from '@/state/ui'
+import { ini_ui, switchLayout, switchTheme, toggleTranslator } from '@/state/ui'
 import CpModal from './CpModal.vue'
 import CpOptions, { type Option } from './CpOptions.vue'
 import { ini_ui_header, switchHeaderPosition, switchHeaderSize } from '@/state/uiHeader'
@@ -84,13 +84,14 @@ watch(
             {
               label: '百度翻译',
               value: 'baidu_trans',
+              sup: 'Beta',
               tooltip: '使用的是网页版百度翻译',
             },
           ]
         : []),
       ...couldTransAios.map((it) => ({
         label: `${it.fromChina && isCn.value ? it.name : it.key}`,
-        sup: 'Beta',
+        sup: it.unstableTrans ? 'Beta' : undefined,
         value: it.key,
       })),
     ]
@@ -193,7 +194,10 @@ function onClose() {
         />
       </setting-group>
       <setting-group>
-        <setting-group-name>{{ t('setting.log') }}</setting-group-name>
+        <setting-group-name>
+          {{ t('setting.log') }}
+          <button @click="toggleTranslator">{{ t('setting.show-translator') }}</button>
+        </setting-group-name>
         <log-box id="log-box">
           <scroll-container>
             <template v-for="(log, i) in logs" :key="i">

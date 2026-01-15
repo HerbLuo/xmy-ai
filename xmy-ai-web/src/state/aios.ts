@@ -21,6 +21,7 @@ export interface Aio {
   onLoad?: () => void
   sendMsg: (msg: string, options: { mobile: boolean }) => Promise<void>
   trans?: (src: string) => Promise<string>
+  unstableTrans?: boolean
 }
 
 /* aio helpers */
@@ -188,7 +189,6 @@ const aiosPlain: Record<string, Aio> = {
     sendMsg: (msg) => sendMsg('textarea', msg),
     trans: async function (src) {
       const el = await findEl<HTMLDivElement | HTMLTextAreaElement>('textarea')
-      console.log(el)
       setValue(el, `将以下文字翻译为英文\n${src}`)
       await delay(200)
       emitEnter(el)
@@ -206,6 +206,7 @@ const aiosPlain: Record<string, Aio> = {
       const result_el = result_box.childNodes[result_box.childNodes.length - 1]
       return (result_el as HTMLDivElement)?.innerText
     },
+    unstableTrans: true
   },
   yuanbao: {
     key: 'yuanbao',
@@ -215,6 +216,24 @@ const aiosPlain: Record<string, Aio> = {
     url: 'https://yuanbao.tencent.com/',
     fromChina: true,
     sendMsg: (msg) => sendMsg('.ql-editor', msg),
+    trans: async function (src) {
+      const msg = `将以下文字翻译为英文，直接给出结果，不要多余的解释\n${src}`
+      await sendMsg('.ql-editor', msg)
+
+      let times = 0
+      while (times < 30) {
+        const loading = document.querySelector('.hyc-content-loading')
+        if (!loading) {
+          const res = document.querySelector<HTMLDivElement>('.hyc-content-md-done')
+          if (res) {
+            return res.innerText
+          }
+        }
+        times++
+        await delay(1000)
+      }
+      return ""
+    }
   },
   tongyi: {
     key: 'tongyi',
@@ -235,6 +254,33 @@ const aiosPlain: Record<string, Aio> = {
     url: 'https://www.doubao.com/',
     fromChina: true,
     sendMsg: (msg) => sendMsg('textarea.semi-input-textarea', msg),
+    trans: async function (src) {
+      const msg = `将以下文字翻译为英文，直接给出结果，不要多余的解释\n${src}`
+      await sendMsg('textarea.semi-input-textarea', msg)
+
+      let times = 0
+      while (times < 30) {
+        const loading = document.querySelector('[data-testid="message_loading"]')
+        const indicator = document.querySelector('span[data-testid="indicator"]')
+        if (!loading && !indicator) {
+          console.log('--------------DouBao Trans--------------')
+          console.log(
+            document.querySelector<HTMLDivElement>('div[data-testid="receive_message"]')?.innerHTML,
+          )
+          const box = document.querySelector<HTMLDivElement>(
+            'div[data-testid="receive_message"] div[data-testid="message_text_content"]',
+          )
+          if (box) {
+            return box.innerText
+          }
+        }
+
+        times++
+        await delay(1000)
+      }
+      return ''
+    },
+    unstableTrans: true
   },
 
   gemini: {

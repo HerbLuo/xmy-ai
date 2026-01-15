@@ -94,7 +94,8 @@
     "theme": "主題",
     "top": "頂部",
     "translate-engine": "翻譯引擎",
-    "usage": "用法"
+    "usage": "用法",
+    "show-translator": "顯示翻譯引擎"
   },
   "settingText": "環境",
   "sstour": {

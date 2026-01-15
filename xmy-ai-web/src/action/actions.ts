@@ -7,6 +7,7 @@ import { log } from '@/state/log'
 import { ini_split_view } from '@/state/splitView'
 import type { Playground } from '@/state/uiPlaygrounds'
 import { executeInSplitView } from './message'
+import { ini_ui_language } from '@/state/i18n'
 
 const translateCache: Record<string, Promise<string>> = {}
 
@@ -21,7 +22,7 @@ function sendToModel(
       throw tipError('aios配置中找不到' + aiModel)
     }
     const { translate: trans } = currentQuestionOptions.value || {}
-    if (aio.fromChina === false && trans) {
+    if (aio.fromChina === false && trans && ini_ui_language.value !== 'en') {
       if (!translateCache[question]) {
         translateCache[question] = translate(question).then((r) => {
           log.append('翻译结果' + r)

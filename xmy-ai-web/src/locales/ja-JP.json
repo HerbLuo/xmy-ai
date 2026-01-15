@@ -94,7 +94,8 @@
     "theme": "テーマ",
     "top": "トップ",
     "translate-engine": "翻訳エンジン",
-    "usage": "使用法"
+    "usage": "使用法",
+    "show-translator": "表示翻訳エンジン"
   },
   "settingText": "設定",
   "sstour": {

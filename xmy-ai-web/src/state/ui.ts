@@ -9,15 +9,18 @@ const UiStorageKey = 'lambs_ini_ui'
 
 export type Theme = 'auto' | 'light' | 'dark'
 export type Layout = 'large_screen' | 'small_screen'
+export type Visibility = 'visible' | 'hidden'
 export type IniUi = {
   theme: Theme
   layout: Layout
+  translatorVisibility: Visibility
 }
 const storage = loadState<IniUi>(UiStorageKey)
 export const ini_ui: IniUi = reactive(
   unwrap(typeCheck(storage)) || {
     theme: 'auto',
     layout: largeScreen() ? 'large_screen' : 'small_screen',
+    translatorVisibility: 'hidden',
   },
 )
 
@@ -56,6 +59,10 @@ export function switchLayout(layout: Layout) {
   ini_ui.layout = layout
 
   saveState(UiStorageKey, ini_ui)
+}
+
+export function toggleTranslator() {
+  ini_ui.translatorVisibility = ini_ui.translatorVisibility === 'visible' ? 'hidden' : 'visible'
 }
 
 function typeCheck(data: IniUi | null): CheckResult<IniUi | null> {
