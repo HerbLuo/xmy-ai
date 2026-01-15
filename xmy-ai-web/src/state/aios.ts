@@ -206,7 +206,7 @@ const aiosPlain: Record<string, Aio> = {
       const result_el = result_box.childNodes[result_box.childNodes.length - 1]
       return (result_el as HTMLDivElement)?.innerText
     },
-    unstableTrans: true
+    unstableTrans: true,
   },
   yuanbao: {
     key: 'yuanbao',
@@ -232,8 +232,8 @@ const aiosPlain: Record<string, Aio> = {
         times++
         await delay(1000)
       }
-      return ""
-    }
+      return ''
+    },
   },
   tongyi: {
     key: 'tongyi',
@@ -280,7 +280,7 @@ const aiosPlain: Record<string, Aio> = {
       }
       return ''
     },
-    unstableTrans: true
+    unstableTrans: true,
   },
 
   gemini: {
