@@ -3,7 +3,7 @@
 English | [简体中文](README-CN.md)
 
 The Lambs AI Assistant is a pure front-end webpage that aggregates web portals from various AI websites, allowing users to simultaneously ask questions to multiple AI agents.  
-This is the official website of Lambs AI Assistant[https://lambs-ai.com]
+This is the official website of Lambs AI Assistant[https://lambs-ai.com], 国内镜像: [https://xmy-ai.cn]
 
 ![Schematic diagram of Lambs AI assistant](./xmy-ai-web/src/imgs/s_tour_en_4.jpg)
 

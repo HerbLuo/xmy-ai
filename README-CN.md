@@ -3,7 +3,7 @@
 [English](README.md) | 简体中文
 
 小绵羊 AI 助手是一个纯前端网页，它聚合了利用各大 AI 网站的 Web 端入口，可以同时向多个 AI 智能体提问。  
-这是小绵羊 AI 助手的官方网站[https://xmy-ai.cn]
+这是小绵羊 AI 助手的官方网站[https://xmy-ai.cn] for international [https://lambs-ai.com]
 
 ![小绵羊AI助手示意图](./xmy-ai-web/src/imgs/s_tour_4.jpg)
 
