@@ -44,7 +44,7 @@ watch(
 export function switchAiPage(index: number, key: string) {
   changeCurrentPlayground(async (playground) => {
     const pages = playground.pages
-    if (pages.includes(key)) {
+    if (playground.pages.filter((_, i) => i !== index).includes(key)) {
       tipError(i18n.global.t('messages.same-ai-selected'))
       return
     }
@@ -80,5 +80,11 @@ export function switchAiPage(index: number, key: string) {
       }
     }
     pages[index] = key
+  })
+}
+
+export function removeAiPage(index: number) {
+  changeCurrentPlayground((playground) => {
+    playground.pages.splice(index, 1)
   })
 }
