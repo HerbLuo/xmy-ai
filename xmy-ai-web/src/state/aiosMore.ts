@@ -6,7 +6,7 @@ export function moreAios(): Record<string, Aio> {
     copilot: {
       key: 'copilot',
       name: 'Copilot',
-      tested: 20251217,
+      tested: 20260129,
       onlySplitViewMode: true,
       url: 'https://copilot.microsoft.com/',
       fromChina: false,
@@ -30,7 +30,7 @@ export function moreAios(): Record<string, Aio> {
     felo: {
       key: 'felo',
       name: 'Felo',
-      tested: 20251217,
+      tested: 20260129,
       tags: [i18n.global.t('FNL'), i18n.global.t('Japan')],
       url: 'https://felo.ai/search',
       fromChina: false,
@@ -40,7 +40,7 @@ export function moreAios(): Record<string, Aio> {
       key: 'genspark',
       name: 'Genspark',
       tags: [],
-      tested: 20251217,
+      tested: 20260129,
       cookies: ['*'],
       url: 'https://www.genspark.ai/',
       sendMsg: (msg) => sendMsg('.search-input', msg),
@@ -49,7 +49,7 @@ export function moreAios(): Record<string, Aio> {
       key: 'kimi',
       name: 'Kimi',
       tags: [i18n.global.t('China'), 'Free'],
-      tested: 20251217,
+      tested: 20260129,
       url: 'https://www.kimi.com/',
       fromChina: true,
       storage: ['access_token', 'refresh_token'],
@@ -73,7 +73,7 @@ export function moreAios(): Record<string, Aio> {
         })
         el.dispatchEvent(input)
         await delay(100)
-        const btn = await findEl<HTMLButtonElement>('.send-button')
+        const btn = await findEl<HTMLButtonElement>('.send-button-container')
         btn.click()
       },
     },
@@ -81,6 +81,7 @@ export function moreAios(): Record<string, Aio> {
       key: 'liner',
       name: 'Liner',
       tags: [i18n.global.t('FNL')],
+      onlySplitViewMode: true,
       cookies: ['*'],
       url: 'https://app.liner.com/',
       sendMsg: async function (msg) {
@@ -96,7 +97,7 @@ export function moreAios(): Record<string, Aio> {
       tags: [i18n.global.t('FNL')],
       cookies: ['*'],
       fromChina: false,
-      tested: 20251217,
+      tested: 20260129,
       url: 'https://chat.mistral.ai/chat',
       sendMsg: (msg) => sendMsg('div[contenteditable]', msg),
     },
@@ -104,25 +105,16 @@ export function moreAios(): Record<string, Aio> {
       key: 'perplexity',
       name: 'Perplexity',
       tags: [i18n.global.t('FNL')],
-      tested: 20251217,
+      tested: 20260129,
       onlySplitViewMode: true,
       url: 'https://www.perplexity.ai/',
       fromChina: false,
       sendMsg: (msg) => sendMsg('#ask-input', msg),
     },
-    phind: {
-      key: 'phind',
-      name: 'Phind',
-      cookies: ['*'],
-      tags: [i18n.global.t('FNL'), i18n.global.t('tags.rich-visuals')],
-      tested: 20251217,
-      url: 'https://www.phind.com/',
-      sendMsg: (msg) => sendMsg('textarea', msg),
-    },
     poe: {
       key: 'poe',
       name: 'Poe',
-      tested: 20251217,
+      tested: 20260129,
       tags: [i18n.global.t('tags.limited-free'), i18n.global.t('tags.multi-ai')],
       url: 'https://poe.com/',
       sendMsg: (msg) => sendMsg('textarea', msg),
@@ -132,7 +124,7 @@ export function moreAios(): Record<string, Aio> {
       name: 'You.com',
       tags: [i18n.global.t('FNL')],
       cookies: ['*'],
-      tested: 20251217,
+      tested: 20260129,
       url: 'https://you.com/?chatMode=default',
       fromChina: false,
       sendMsg: (msg) => sendMsg('#search-input-textarea', msg),
@@ -140,11 +132,12 @@ export function moreAios(): Record<string, Aio> {
     zai: {
       key: 'zai',
       name: 'Zai',
+      onlySplitViewMode: true,
       tags: [i18n.global.t('FNL')],
       cookies: ['*'],
       storage: ['token'],
       fromChina: false,
-      tested: 20251217,
+      tested: 20260129,
       onLoad: function () {
         checkLogin(() => !!document.querySelector('button.h-8'), 'Zai', '', true)
       },
@@ -156,10 +149,10 @@ export function moreAios(): Record<string, Aio> {
       key: 'YiYan',
       name: '文心一言',
       tags: ['Free', i18n.global.t('China')],
-      tested: 20251217,
+      tested: 20260129,
       fromChina: true,
       url: 'https://yiyan.baidu.com/',
-      sendMsg: (msg) => sendMsg('.yc-editor', msg),
+      sendMsg: (msg) => sendMsg('div[role="textbox"]', msg),
     },
     SenseChat: {
       key: 'SenseChat',
@@ -172,36 +165,27 @@ export function moreAios(): Record<string, Aio> {
         checkLogin(
           () => !!document.querySelector('textarea[placeholder="点击登录，开启与商量的畅聊"]'),
           '商量',
-          '',
+          'font-size: 16px',
         )
       },
       url: 'https://chat.sensetime.com/',
       sendMsg: (msg) => sendMsg('textarea.ant-input', msg),
     },
-    ZhiNao: {
-      key: 'ZhiNao',
-      name: '360智脑',
-      tags: ['Free', i18n.global.t('China')],
-      tested: 20251217,
-      fromChina: true,
-      url: 'https://chat.360.com/',
-      sendMsg: (msg) => sendMsg('div[contenteditable=true]', msg),
-    },
     NaMi: {
       key: 'NaMi',
       name: '纳米',
       tags: ['Free', i18n.global.t('China')],
-      tested: 20251217,
+      tested: 20260129,
       url: 'https://bot.n.cn/',
       fromChina: true,
-      sendMsg: (msg) => sendMsg('#NM-ASSISTANT_chat_input textarea', msg),
+      sendMsg: (msg) => sendMsg('div[role="textbox"]', msg),
     },
     BaiChuan: {
       key: 'BaiChuan',
       name: '百小应',
       tags: ['Free', i18n.global.t('tags.medical'), i18n.global.t('China')],
       cookies: ['*'],
-      tested: 20251217,
+      tested: 20260129,
       fromChina: true,
       url: 'https://ying.baichuan-ai.com/chat',
       sendMsg: (msg) => sendMsg('textarea.cursor-text', msg),
@@ -211,7 +195,7 @@ export function moreAios(): Record<string, Aio> {
       name: '海螺',
       tags: ['Free', i18n.global.t('China')],
       onlySplitViewMode: true,
-      tested: 20251217,
+      tested: 20260129,
       fromChina: true,
       url: 'https://agent.minimaxi.com/',
       sendMsg: (msg) => sendMsg('#chat-input', msg),
@@ -220,7 +204,7 @@ export function moreAios(): Record<string, Aio> {
       key: 'TianGong',
       name: '天工',
       tags: ['Free', i18n.global.t('China')],
-      tested: 20251217,
+      tested: 20260129,
       fromChina: true,
       url: 'https://www.tiangong.cn/',
       sendMsg: (msg) => sendMsg('div[contenteditable]', msg),
@@ -236,6 +220,7 @@ export function moreAios(): Record<string, Aio> {
       sendMsg: async function (msg) {
         const el = await findEl('.w-full textarea:not(.w-full)')
         setValue(el, msg)
+        delay(500)
         const btn = await findEl<HTMLDivElement>('button.w-8.h-8', undefined, (btn) => {
           return btn.classList.contains('[&_svg]:size-5')
         })
@@ -246,7 +231,7 @@ export function moreAios(): Record<string, Aio> {
       key: 'MetaSo',
       name: '秘塔',
       tags: ['Free', i18n.global.t('China')],
-      tested: 20251217,
+      tested: 20260129,
       fromChina: true,
       url: 'https://metaso.cn/',
       sendMsg: (msg) => sendMsg('.search-consult-textarea', msg),
@@ -255,7 +240,7 @@ export function moreAios(): Record<string, Aio> {
       key: 'zhipu',
       name: '智谱清言',
       tags: [i18n.global.t('FNL'), i18n.global.t('China')],
-      tested: 20251217,
+      tested: 20260129,
       url: 'https://chatglm.cn/',
       fromChina: true,
       sendMsg: async function (msg) {

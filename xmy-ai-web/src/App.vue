@@ -34,6 +34,7 @@ if (mobileMode.value) {
 lb-theme {
   position: fixed;
   overflow-x: hidden;
+  width: 100%;
   height: 100%;
   display: flex;
   z-index: 10;

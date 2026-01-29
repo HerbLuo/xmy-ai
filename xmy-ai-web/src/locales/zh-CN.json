@@ -75,7 +75,8 @@
     "notes": "注意：",
     "plugin-tip": "因为浏览器的限制，小绵羊AI助手必须要安装一个Chrome,Edge插件才能正常工作。",
     "login-tip": "小绵羊AI助手的界面中是无法进行AI智能体的登陆登出动作的，如果需要登陆，请在单独界面进行。助手会自动同步账号信息（必要时根据助手内提示操作）。",
-    "show-translator": "显示翻译引擎"
+    "show-translator": "显示翻译引擎",
+    "end_less_mode": "无尽模式"
   },
   "tour": {
     "install-instruct": "安装说明：",
@@ -164,5 +165,7 @@
   "China": "国产",
   "save": "保存",
   "add": "添加",
-  "remove": "删除"
+  "remove": "删除",
+  "no": "否",
+  "yes": "是"
 }

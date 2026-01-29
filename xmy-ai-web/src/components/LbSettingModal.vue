@@ -32,11 +32,11 @@ const themeOptions = computed<Option[]>(() => [
 ])
 const layoutOptions = computed<Option[]>(() => [
   {
-    label: t('setting.large-screen'),
+    label: t('no'),
     value: 'large_screen',
   },
   {
-    label: t('setting.small-screen'),
+    label: t('yes'),
     value: 'small_screen',
   },
 ])
@@ -136,7 +136,7 @@ function onClose() {
             />
           </setting-line>
           <setting-line>
-            <setting-name>{{ t('setting.layout') }}</setting-name>
+            <setting-name>{{ t('setting.end_less_mode') }}</setting-name>
             <CpOptions
               :value="ini_ui.layout"
               :options="layoutOptions"

@@ -269,7 +269,7 @@ ai-table {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 780px;
+  width: 880px;
   height: 80vh;
   max-height: 580px;
   padding: 22px;
@@ -472,6 +472,11 @@ textarea {
   color: #aaa;
 }
 
+@media (max-width: 880px) {
+  ai-table {
+    width: 780px;
+  }
+}
 @media (max-width: 780px) {
   ai-table {
     width: 620px;

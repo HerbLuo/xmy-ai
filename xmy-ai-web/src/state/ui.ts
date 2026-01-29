@@ -24,7 +24,7 @@ export const ini_ui: IniUi = reactive(
   },
 )
 
-export const isSmallScreen = computed(() => ini_ui.layout === 'small_screen')
+export const endLessMode = computed(() => ini_ui.layout === 'small_screen')
 
 export const theme = ref(ini_ui.theme)
 watch(

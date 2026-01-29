@@ -6,11 +6,15 @@ import {
 } from '@/action/message'
 import { aios, onLoadScript, type Aio } from '@/state/aios'
 import { currentLayoutSwitching } from '@/state/uiLayoutSwitching'
-import { currentPlaygroundPages, switchAiPage } from '@/state/uiPlaygroundsCurrentPlaygroundPages'
+import {
+  currentPlaygroundPages,
+  removeAiPage,
+  switchAiPage,
+} from '@/state/uiPlaygroundsCurrentPlaygroundPages'
 import { type CSSProperties, defineAsyncComponent, onMounted, ref } from 'vue'
 import LbAiSettingModal from './LbAiSettingModal.vue'
 import { mobileMode } from '@/state/env'
-import { isSmallScreen } from '@/state/ui'
+import { endLessMode } from '@/state/ui'
 import LbMoreAiModal from './LbMoreAiModal.vue'
 import { confirmError } from '@/utils/error'
 import { log } from '@/state/log'
@@ -104,8 +108,8 @@ function onMoreClick(i: number, key: string) {
 </script>
 <template>
   <main
-    :class="`${isSmallScreen ? 'small' : 'large'}-screen macos-scrollbar`"
-    :style="isSmallScreen ? {} : { ...currentLayoutSwitching.style, ...zoomStyle }"
+    :class="`${endLessMode ? 'small' : 'large'}-screen macos-scrollbar`"
+    :style="endLessMode ? {} : { ...currentLayoutSwitching.style, ...zoomStyle }"
   >
     <ai-page v-for="(page, i) in currentPlaygroundPages" :key="page.key" :id="page.key">
       <ai-switcher
@@ -127,6 +131,9 @@ function onMoreClick(i: number, key: string) {
         </switcher-options>
       </ai-switcher>
       <ai-buttons>
+        <ai-button v-if="endLessMode" @click="removeAiPage(i)">
+          <cp-svg-icon name="close" :size="19" />
+        </ai-button>
         <ai-button :tooltip="t('refresh')" position="left" @click="onRefreshClick(page.key)">
           <cp-svg-icon name="refresh" :size="19" />
         </ai-button>
@@ -147,6 +154,9 @@ function onMoreClick(i: number, key: string) {
         </ai-button>
       </ai-buttons>
       <iframe @load="onIframeLoad(page)" :src="page.url" />
+    </ai-page>
+    <ai-page v-if="endLessMode">
+      <add-more @click="onMoreClick(currentPlaygroundPages.length, 'new')">+</add-more>
     </ai-page>
     <install-plugin-tip v-if="error">
       {{ t('messages.no-plugin') }}
@@ -205,6 +215,19 @@ ai-page {
   width: 90vw;
   flex: 0 0 auto;
 }
+add-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 50px;
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+}
+.dark add-more {
+  border: var(--dark-border);
+}
 @media (min-width: 380px) {
   .small-screen ai-page {
     width: 80vw;
@@ -212,27 +235,27 @@ ai-page {
 }
 @media (min-width: 680px) {
   .small-screen ai-page {
-    width: 70vw;
+    width: 65vw;
   }
 }
 @media (min-width: 800px) {
   .small-screen ai-page {
-    width: 60vw;
+    width: 55vw;
   }
 }
 @media (min-width: 960px) {
   .small-screen ai-page {
-    width: 50vw;
+    width: 40vw;
   }
 }
 @media (min-width: 1200px) {
   .small-screen ai-page {
-    width: 40vw;
+    width: 35vw;
   }
 }
 @media (min-width: 1600px) {
   .small-screen ai-page {
-    width: 30vw;
+    width: 25vw;
   }
 }
 ai-switcher,
@@ -303,7 +326,6 @@ ai-switcher switcher-options {
   height: 0;
   opacity: 0;
   transition:
-    0.3s width ease,
     0.3s height ease,
     0.3s opacity ease;
   flex-direction: column;

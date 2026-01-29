@@ -1,5 +1,5 @@
 import { onMounted, watch } from 'vue'
-import { isSmallScreen, theme } from './ui'
+import { endLessMode, theme } from './ui'
 import { ini_ui_header } from './uiHeader'
 import { aioHelpers, aios, type Aio } from './aios'
 import { currentPlayground } from './uiPlaygroundsCurrentPlayground'
@@ -56,10 +56,10 @@ export function initMobile() {
     )
 
     watch(
-      isSmallScreen,
+      endLessMode,
       () => {
         mergeState({
-          smallScreenMode: isSmallScreen.value,
+          smallScreenMode: endLessMode.value,
         })
       },
       { immediate: true },

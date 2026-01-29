@@ -53,7 +53,9 @@ function handleEnter(event: KeyboardEvent) {
   <question-bar>
     <question-options v-if="ini_ui_language !== 'en'">
       <button
-        :tooltip="t('ques-bar.auto-trans')"
+        :tooltip="
+          `${currentQuestionOptions?.translate ? 'Actived' : 'Disabled'}` + t('ques-bar.auto-trans')
+        "
         position="right"
         :class="{ actived: currentQuestionOptions?.translate }"
         @click="toggleQuestionOptions('translate')"

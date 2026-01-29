@@ -95,7 +95,8 @@
     "top": "トップ",
     "translate-engine": "翻訳エンジン",
     "usage": "使用法",
-    "show-translator": "表示翻訳エンジン"
+    "show-translator": "表示翻訳エンジン",
+    "end_less_mode": "エンドレスモード"
   },
   "settingText": "設定",
   "sstour": {
@@ -164,5 +165,7 @@
     "ui-workspace-key-unique": "属性 `ini.ui.workspace.key` は複製できません",
     "ui-workspace-title": "属性 `ini.ui.workspace.title` は必須です。"
   },
-  "zoom-in": "ズームイン"
+  "zoom-in": "ズームイン",
+  "no": "いいえ",
+  "yes": "はい"
 }

@@ -26,7 +26,7 @@ export default defineConfig({
               "ai-config-title-left", "ai-config-title-right", "modal-action-bar", "header-right", 
               "log-box", "scroll-container", "ai-tag", "split-view", "message-box", "message-boxs",
               "message-tip", "message-tips", "alert-background", "alert-box", "alert-content", "alert-action-bar",
-              "bei-an", "translator-box"
+              "bei-an", "translator-box", "add-more"
             ].includes(tag)
           }
         }

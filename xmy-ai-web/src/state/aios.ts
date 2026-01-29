@@ -171,7 +171,7 @@ const aiosPlain: Record<string, Aio> = {
     key: 'deepseek',
     name: 'DeepSeek',
     url: 'https://chat.deepseek.com/',
-    tested: 20251217,
+    tested: 20260129,
     pcUA: true,
     tags: ['Free'],
     fromChina: true,
@@ -211,7 +211,7 @@ const aiosPlain: Record<string, Aio> = {
   yuanbao: {
     key: 'yuanbao',
     name: '元宝',
-    tested: 20251217,
+    tested: 20260129,
     tags: ['Free'],
     url: 'https://yuanbao.tencent.com/',
     fromChina: true,
@@ -238,7 +238,7 @@ const aiosPlain: Record<string, Aio> = {
   tongyi: {
     key: 'tongyi',
     name: '千问',
-    tested: 20251217,
+    tested: 20260129,
     tags: ['Free', 'Java'],
     extraCsp: ['https://www.tongyi.com/'],
     url: 'https://www.qianwen.com/',
@@ -249,7 +249,7 @@ const aiosPlain: Record<string, Aio> = {
   doubao: {
     key: 'doubao',
     name: '豆包',
-    tested: 20251217,
+    tested: 20260129,
     tags: ['Free'],
     url: 'https://www.doubao.com/',
     fromChina: true,
@@ -286,8 +286,8 @@ const aiosPlain: Record<string, Aio> = {
   gemini: {
     key: 'gemini',
     name: 'Gemini',
-    tested: 20251217,
-    url: 'https://gemini.google.com/',
+    tested: 20260129,
+    url: 'https://gemini.google.com/app',
     fromChina: false,
     sendMsg: async function (msg) {
       const el = await findEl('.ql-editor')
@@ -299,23 +299,24 @@ const aiosPlain: Record<string, Aio> = {
   chatgpt: {
     key: 'chatgpt',
     name: 'ChatGPT',
-    tested: 20251217,
+    tested: 20260129,
     url: 'https://chatgpt.com/',
     fromChina: false,
-    cookies: ['__Secure-next-auth.session-token'],
+    cookies: ['*'],
     sendMsg: (msg) => sendMsg('#prompt-textarea', msg),
   },
   claude: {
     key: 'claude',
     name: 'Claude',
     tags: ['Dev'],
-    tested: 20251217,
+    tested: 20260129,
     cookies: ['*'],
     url: 'https://claude.ai/',
     fromChina: false,
     sendMsg: async function (msg) {
       const el = await findEl('div[contenteditable=true]')
       el.innerHTML = `<p>${msg}</p>`
+      delay(0)
       const btn = await findEl<HTMLDivElement>('button[aria-label="Send message"]')
       btn.click()
     },

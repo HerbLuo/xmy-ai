@@ -95,7 +95,8 @@
     "top": "頂部",
     "translate-engine": "翻譯引擎",
     "usage": "用法",
-    "show-translator": "顯示翻譯引擎"
+    "show-translator": "顯示翻譯引擎",
+    "end_less_mode": "無盡模式"
   },
   "settingText": "環境",
   "sstour": {
@@ -164,5 +165,7 @@
     "ui-workspace-key-unique": "屬性 `ini.ui.workspace.key` 不能重複",
     "ui-workspace-title": "屬性“ini.ui.workspace.title”是必需的。"
   },
-  "zoom-in": "放大"
+  "zoom-in": "放大",
+  "no": "不",
+  "yes": "是的"
 }

@@ -113,6 +113,15 @@ const res = await (${func})(...${JSON.stringify(args)});
 window.parent.postMessage({type: 'Xmy_RPC_Response', res}, '${origin}')`
   frame.contentWindow?.postMessage(JSON.stringify({ type: 'exec', code }), new URL(url).origin)
   const result = await promise
-  reload(frame)
+  await reload(frame)
+  appendLbTransFlag(frame)
   return result
+}
+
+export function appendLbTransFlag(frame: HTMLIFrameElement) {
+  const code = `window._xmy_trans = true`
+  frame.contentWindow?.postMessage(
+    JSON.stringify({ type: 'exec', code }),
+    new URL(translate_setting.url).origin,
+  )
 }

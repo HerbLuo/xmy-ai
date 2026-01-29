@@ -82,6 +82,7 @@ This is a typical AI entry configuration:
 | Various Popups   | ✅       |
 | Reset setting    | ✅       |
 | More Translator  | ⏳       |
+| Endless Mode     | ⛔       |
 | Advanced Setting | ⛔       |
 | Check settings   | ⛔       |
 | Merge settings   | ⛔       |

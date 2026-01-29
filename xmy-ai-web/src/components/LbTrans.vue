@@ -1,17 +1,15 @@
 <script setup lang="ts">
+import { appendLbTransFlag } from '@/action/translate'
 import { translate_setting } from '@/state/translateEngine'
 import { ini_ui, toggleTranslator } from '@/state/ui'
 import { currentQuestionOptions } from '@/state/uiPlaygroundsCurrentQuestionOptions'
 import { EVENT_Iframe_Evaler_Preapred, eventBus } from '@/utils/EventBus'
 
 eventBus.on(EVENT_Iframe_Evaler_Preapred, () => {
-  const code = `window._xmy_trans = true`
-  document
-    .querySelector<HTMLIFrameElement>('#trans_engine')
-    ?.contentWindow?.postMessage(
-      JSON.stringify({ type: 'exec', code }),
-      new URL(translate_setting.url).origin,
-    )
+  const frame = document.querySelector<HTMLIFrameElement>('#trans_engine')
+  if (frame) {
+    appendLbTransFlag(frame)
+  }
 })
 </script>
 
