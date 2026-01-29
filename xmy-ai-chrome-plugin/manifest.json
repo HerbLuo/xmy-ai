@@ -1,6 +1,6 @@
 {
-  "name": "Xmy Ai Helper",
-  "description" : "A helper for lambs-ai.com, the Lambs AI Assistant",
+  "name": "Lambs Ai Assistant",
+  "description" : "An Assistant for lambs-ai.com, which allowing users to simultaneously ask questions to multiple AI agents",
   "version": "1.0",
   "manifest_version": 3,
   "action": {

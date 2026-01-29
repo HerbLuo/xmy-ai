@@ -139,7 +139,7 @@ async function changeCookieToNoRestriction(cookies, cookie, url) {
   try {
     await chrome.cookies.set(details);
   } catch (e) {
-    console.error(e);
+    console.info(e);
   }
 }
 
